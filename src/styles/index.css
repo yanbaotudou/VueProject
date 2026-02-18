@@ -1,0 +1,66 @@
+:root {
+  --bg-page: #f5f7fb;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --brand: #0f766e;
+  --brand-soft: #dff4f2;
+  --border: #e5e7eb;
+  --header-height: 56px;
+}
+
+:root.dark {
+  --bg-page: #12191f;
+  --bg-card: #1b2733;
+  --text-primary: #e5edf4;
+  --text-secondary: #9db1c4;
+  --brand: #22b8a6;
+  --brand-soft: #1d3d44;
+  --border: #2f4050;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html,
+#app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 40%),
+    var(--bg-page);
+  color: var(--text-primary);
+}
+
+.app-root {
+  width: 100%;
+  height: 100%;
+}
+
+.page-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.page-toolbar {
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.page-table {
+  padding: 16px 20px;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
