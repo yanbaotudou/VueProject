@@ -64,6 +64,30 @@ npm run lint     # 代码检查
 npm run format   # 代码格式化
 ```
 
+## 部署到 GitHub Pages
+
+项目已内置工作流：`.github/workflows/deploy-pages.yml`。  
+推送到 GitHub 仓库 `main` 分支后会自动构建并发布。
+
+1. 在 GitHub 新建仓库（例如 `juice-web`）
+2. 将本地仓库推送到 GitHub（示例）
+
+```bash
+git remote add github git@github.com:<你的用户名>/<你的仓库名>.git
+git push -u github main
+```
+
+3. 在 GitHub 仓库设置中启用 Pages
+   - `Settings -> Pages -> Build and deployment`
+   - `Source` 选择 `GitHub Actions`
+4. 等待 workflow 执行完成，访问：
+   - `https://<你的用户名>.github.io/<你的仓库名>/`
+
+说明：
+
+- 工作流构建时自动设置 Vite `base` 为仓库名子路径
+- Router 自动切换为 `hash` 模式，避免 GitHub Pages 刷新 404
+
 ## Mock 与持久化机制
 
 - Mock 实现目录：`src/mock/`

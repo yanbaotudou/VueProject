@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
 import AppLayout from "@/layout/AppLayout.vue";
 import dashboardRoute from "./modules/dashboard";
 import storeRoute from "./modules/store";
@@ -52,8 +52,9 @@ const routes = [
     }
   }
 ];
+const routerMode = import.meta.env.VITE_ROUTER_MODE || "history";
 const router = createRouter({
-  history: createWebHistory(),
+  history: routerMode === "hash" ? createWebHashHistory(import.meta.env.BASE_URL) : createWebHistory(import.meta.env.BASE_URL),
   routes
 });
 function resolveFallbackPath(role) {
