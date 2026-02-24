@@ -64,3 +64,46 @@ html,
 .text-secondary {
   color: var(--text-secondary);
 }
+
+@media (max-width: 992px) {
+  .page-toolbar,
+  .page-table {
+    padding: 12px;
+  }
+
+  .page-toolbar :is(.el-input, .el-select, .el-date-editor) {
+    width: 100% !important;
+  }
+
+  .page-toolbar .el-form--inline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-toolbar .el-form--inline .el-form-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .page-table {
+    overflow-x: auto;
+  }
+
+  .page-table .el-table {
+    min-width: 760px;
+  }
+
+  .el-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .el-dialog {
+    width: calc(100vw - 20px) !important;
+    margin-top: 8vh !important;
+  }
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="side-wrap">
     <div class="logo">饮品管理系统</div>
-    <el-menu :default-active="activePath" class="menu" router>
+    <el-menu :default-active="activePath" class="menu" router @select="onSelect">
       <el-menu-item v-for="routeItem in visibleMenus" :key="routeItem.name" :index="`/${routeItem.path}`">
         <el-icon>
           <component :is="routeItem.meta?.icon" />
@@ -17,6 +17,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { appChildrenRoutes } from "@/router";
 import { useAuthStore } from "@/stores/auth";
+const emit = defineEmits(["menu-click"]);
 const route = useRoute();
 const authStore = useAuthStore();
 const activePath = computed(() => {
@@ -29,6 +30,9 @@ const visibleMenus = computed(() => {
     return roles.includes(authStore.role);
   });
 });
+function onSelect() {
+  emit("menu-click");
+}
 </script>
 
 <style scoped>

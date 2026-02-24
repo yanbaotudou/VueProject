@@ -1,8 +1,17 @@
 <template>
   <div class="top-bar">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item v-for="item in breadcrumbs" :key="item.path">{{ item.meta.title }}</el-breadcrumb-item>
-    </el-breadcrumb>
+    <div class="left-area">
+      <div v-if="isMobile" class="left-tools">
+        <el-button text circle class="menu-btn" @click="emit('toggle-menu')">
+          <el-icon><Menu /></el-icon>
+        </el-button>
+        <div class="mobile-title">{{ currentTitle }}</div>
+      </div>
+
+      <el-breadcrumb v-if="!isMobile" separator="/">
+        <el-breadcrumb-item v-for="item in breadcrumbs" :key="item.path">{{ item.meta.title }}</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
 
     <div class="right-tools">
       <el-switch
@@ -32,10 +41,19 @@ import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import { useSettingsStore } from "@/stores/settings";
+import { Menu } from "@element-plus/icons-vue";
+defineProps({
+  isMobile: {
+    type: Boolean,
+    default: false
+  }
+});
+const emit = defineEmits(["toggle-menu"]);
 const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
 const settingsStore = useSettingsStore();
+const currentTitle = computed(() => route.meta?.title || "管理端");
 const breadcrumbs = computed(
   () => route.matched.filter((item) => item.meta?.title && item.path !== "/").map((item) => ({
     path: item.path,
@@ -62,6 +80,27 @@ function onThemeChange() {
   padding: 0 20px;
 }
 
+.left-area {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.left-tools {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-title {
+  margin-left: 6px;
+  max-width: 45vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .right-tools {
   display: flex;
   align-items: center;
@@ -75,5 +114,22 @@ function onThemeChange() {
   cursor: pointer;
   color: var(--text-primary);
   user-select: none;
+}
+
+@media (max-width: 992px) {
+  .top-bar {
+    padding: 0 12px;
+  }
+
+  .right-tools {
+    gap: 8px;
+  }
+
+  .user-trigger {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 </style>

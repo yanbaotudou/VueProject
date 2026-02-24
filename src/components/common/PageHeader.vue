@@ -46,4 +46,22 @@ defineProps({
   gap: 12px;
   align-items: center;
 }
+
+@media (max-width: 992px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
 </style>

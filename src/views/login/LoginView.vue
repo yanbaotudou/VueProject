@@ -115,4 +115,21 @@ h1 {
 .tips p {
   margin: 2px 0;
 }
+
+@media (max-width: 768px) {
+  .login-page {
+    align-items: flex-start;
+    padding-top: 42px;
+  }
+
+  .login-card {
+    width: calc(100vw - 24px);
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}
 </style>
